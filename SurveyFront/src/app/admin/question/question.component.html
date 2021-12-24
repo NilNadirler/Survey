@@ -1,0 +1,107 @@
+<app-navbar></app-navbar>
+<button type="button" class="btn btn-primary" (click)="toggleAddModal()">Ekle</button>
+<table class="table">
+    <thead>
+
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Soru Adi</th>
+            <th scope="col">Ayar</th>
+            <th scope="col">Oran Hesaplama</th>
+            <th scope="col">Secenekler</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let question of questionList">
+            <th scope="row">{{question.id}}</th>
+            <td>{{question.question}}</td>
+            <td>{{question.optionValue}}</td>
+            <td>{{question.ratio}}</td>
+            <td><button type="button" class="btn btn-warning me-2 " (click)="toggleEditModal(question)">Guncelle</button>
+                <button type="button" class="btn btn-danger" (click)="delete(question)">Sil</button>
+                
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+
+<ng-template [ngIf]="addModalShow">
+
+    <!-- Modal -->
+    <div class="modal fade show" style="display: block !important;" id="exampleModal" tabindex="-1"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Soru Ekle</h5>
+                    <button type="button" class="btn-close" (click)="toggleAddModal()" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="addQuestionForm">
+                        <div class="mb-3 row">
+                            <label class="col-sm-2 col-form-label">Soru adi</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" formControlName="question">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-sm-2 col-form-label">Ayar</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" formControlName="optionValue">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-sm-2 col-form-label">Oran hesaplama</label>
+                            <div class="col-sm-10 pt-3 form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" formControlName="ratio"
+                                    value="1">
+                            </div>
+                        </div>
+                        <button class="btn btn-primary " (click)="add()">Kaydet</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+<ng-template [ngIf]="editModalShow">
+
+    <!-- Modal -->
+    <div class="modal fade show" style="display: block !important;" id="exampleModal" tabindex="-1"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Soru Guncelle</h5>
+                    <button type="button" class="btn-close" (click)="toggleEditModal('')" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="editQuestionForm">
+                        <div class="mb-3 row">
+                            <label class="col-sm-2 col-form-label">Soru adi</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" formControlName="question">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-sm-2 col-form-label">Ayar</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" formControlName="optionValue">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-sm-2 col-form-label">Oran hesaplama</label>
+                            <div class="col-sm-10 pt-3 form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" formControlName="ratio"
+                                    value="1">
+                            </div>
+                        </div>
+                        <button class="btn btn-primary " (click)="edit()">Kaydet</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

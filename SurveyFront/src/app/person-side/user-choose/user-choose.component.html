@@ -1,0 +1,34 @@
+<form [formGroup]="userForm">
+    <div class="mx-auto col-md-4 mt-4">
+        <label for="exampleFormControlInput1" class="form-label">Adi</label>
+        <input type="text" class="form-control" formControlName="firstName" id="exampleFormControlInput1" >
+    </div>
+    <div class="mx-auto col-md-4 mt-4">
+        <label for="exampleFormControlInput1" class="form-label">SoyAdi</label>
+        <input type="text" class="form-control" formControlName="lastName" id="exampleFormControlInput1" >
+    </div>
+    <div class="mx-auto col-md-4 mt-4">
+        <label for="exampleFormControlInput1" class="form-label">Cinsiyeti</label>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" formControlName="gender" name="gender" value="0">
+            <label class="form-check-label" for="flexRadioDefault1">
+             Kadın
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" formControlName="gender" name="gender" value="1">
+            <label class="form-check-label" for="flexRadioDefault2">
+              Erkek
+            </label>
+          </div>
+    </div>
+    <div class="mx-auto col-md-4 mt-4">
+        <label for="exampleFormControlInput1" class="form-label">Dogum Tarihi</label>
+        <input type="date" class="form-control" formControlName="birthDate" id="exampleFormControlInput1" >
+    </div>
+    <div class="mx-auto col-md-4 mt-4">
+        <button type="button" class="btn btn-primary col-md-3 offset-md-9 mt-2" (click)="addUser()">Ekle</button>
+    </div>
+    
+</form>
+

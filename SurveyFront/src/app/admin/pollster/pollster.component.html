@@ -1,0 +1,96 @@
+<app-navbar></app-navbar>
+<button type="button" class="btn btn-primary" (click)="toggleAddModal()">Ekle</button>
+<table class="table">
+    <thead>
+
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Anketor Adi</th>
+            <th scope="col">Anketor Soyadi</th>
+            <th scope="col">Secenekler</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let pollster of pollsters">
+            <th scope="row">{{pollster.id}}</th>
+            <td>{{pollster.firstName}}</td>
+            <td>{{pollster.lastName}}</td>
+
+            <td><button type="button" class="btn btn-warning me-2 " (click)="toggleEditModal(pollster)">Guncelle</button>
+                <button type="button" class="btn btn-danger  me-2" (click)="delete(pollster)">Sil</button>             
+
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+
+<ng-template [ngIf]="addModalShow">
+
+    <!-- Modal -->
+    <div class="modal fade show" style="display: block !important;" id="exampleModal" tabindex="-1"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Anketor Ekle</h5>
+                    <button type="button" class="btn-close" (click)="toggleAddModal()" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="addPollsterForm">
+                        <div class="mb-3 row">
+                            <label class="col-sm-2 col-form-label">Anketor ismi</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" formControlName="firstName">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-sm-2 col-form-label">Anketor Soyismi</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" formControlName="lastName">
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary " (click)="add()">Kaydet</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+<ng-template [ngIf]="editModalShow">
+
+    <!-- Modal -->
+    <div class="modal fade show" style="display: block !important;" id="exampleModal" tabindex="-1"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Anketor Guncelle</h5>
+                    <button type="button" class="btn-close" (click)="toggleEditModal('')" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="editPollsterForm">
+                        <div class="mb-3 row">
+                            <label class="col-sm-2 col-form-label">Anketor adi</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" formControlName="firstName">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-sm-2 col-form-label">Anketor Soyadi</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" formControlName="lastName">
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary " (click)="edit()">Kaydet</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+

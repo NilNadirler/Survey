@@ -1,0 +1,31 @@
+<form [formGroup]="questionForm">
+    <div class="mx-auto col-md-4 mt-4">
+        <div *ngFor="let question of questionList">
+            <ng-template [ngIf]="stringToJson(question.optionValue).type!='textarea'">
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">{{question.question}}</label>
+                    <input 
+                        [type]="stringToJson(question.optionValue).type" 
+                        [min]="stringToJson(question.optionValue).min" 
+                        [max]="stringToJson(question.optionValue).max" 
+                        formControlName="question-{{question.id}}"
+                        class="form-control">
+                </div>
+            </ng-template>
+            <ng-template [ngIf]="stringToJson(question.optionValue).type=='textarea'">
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">{{question.question}}</label>
+                    <textarea class="form-control" formControlName="question-{{question.id}}" rows="3"></textarea>
+                </div>
+
+            </ng-template>
+
+        </div>
+        <ng-template [ngIf]="btn">
+            <button type="button" class="btn btn-primary col-md-3 offset-md-9 mt-2" (click)="save()">Kaydet</button>
+        </ng-template>
+        <ng-template [ngIf]="!btn">
+            <button type="button" class="btn btn-warning col-md-3 offset-md-9 mt-2" (click)="save()">Güncelle</button>
+        </ng-template>
+    </div>
+</form>

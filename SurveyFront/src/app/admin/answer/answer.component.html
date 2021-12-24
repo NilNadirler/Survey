@@ -1,0 +1,35 @@
+<app-navbar></app-navbar>
+<table class="table">
+    <thead>
+
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Anket Adi</th>
+            <th scope="col">Anket Sorulari</th>
+            <th scope="col">Cevaplari</th>
+            <th scope="col">Anketor ismi</th>
+            <th scope="col">Anketor Soyismi</th>
+            <th scope="col">Kullanici adi</th>
+            <th scope="col">Kullanici Soaydi</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let answer of viewAnswers"
+        >
+            <th scope="row">{{answer.id}}</th>
+            <td>{{answer.name}}</td>
+            <td>
+                <div  *ngFor="let item of answer.questions.split('--')">{{item.replace('-','')}}</div>
+            </td>
+            <td>
+                <div  *ngFor="let item of answer.answers.split('--')">{{item.replace('-','')}}</div>
+            </td>     
+            <td>{{answer.pollsterName}}</td>
+            <td>{{answer.pollsterLastName}}</td>
+            <td>{{answer.userName}}</td>
+            <td>{{answer.userLastName}}</td>
+        </tr>
+
+    </tbody>
+</table>
