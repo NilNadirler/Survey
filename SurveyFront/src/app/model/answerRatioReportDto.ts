@@ -1,4 +1,4 @@
-export interface AnswerReportDto{
+export interface AnswerRatioReportDto{
     name:string
     question:string
     answer:string

@@ -1,3 +1,4 @@
+import { AnswerCountDto } from './../model/answerCountReport';
 import { ViewAnswerDto } from './../model/ViewAnswerDto';
 import { AddAnswerDto } from './../model/addAnswerDto';
 import { HttpClient } from '@angular/common/http';
@@ -6,6 +7,7 @@ import { ListResponseModel } from '../model/listResponseModel';
 import { ResponseModel } from '../model/responseModel';
 import { Answer } from '../model/answer';
 import { Observable } from 'rxjs';
+import { AnswerRatioReportDto } from '../model/answerRatioReportDto';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +29,12 @@ export class AnswerService {
 
   getAllByUserAndSurvey(data:any):Observable<ListResponseModel<Answer>>{
     return this.httpClient.post<ListResponseModel<Answer>>(this.apiUrl+"getAllByUserAndSurvey",data)
+  } 
+  getCountReport():Observable<ListResponseModel<AnswerCountDto>>{
+    return this.httpClient.get<ListResponseModel<AnswerCountDto>>(this.apiUrl+"getCountReport")
+  } 
+  getRatioReport():Observable<ListResponseModel<AnswerRatioReportDto>>{
+    return this.httpClient.get<ListResponseModel<AnswerRatioReportDto>>(this.apiUrl+"getRatioReport")
   } 
 
   getAllAnswer():Observable<ListResponseModel<ViewAnswerDto>>{
